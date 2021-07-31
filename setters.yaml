@@ -3,11 +3,11 @@ kind: ConfigMap
 metadata:
   name: setters
 data:
-  namespace: namespace
-  branch: branch
+  namespace: resource-namespace
+  branch: main
   cluster-description-1: description-1
   cluster-description-2: description-1
-  cluster-name-1: cluster
+  cluster-name-1: cluster-1
   cluster-name-2: cluster-2
   project-id: project-id
   region: region
@@ -19,3 +19,4 @@ data:
     - zonal
     - demo
   zone: zone
+  auth-network: authorized-network

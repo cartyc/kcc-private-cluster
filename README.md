@@ -12,7 +12,7 @@ PROJECT_ID=
 SA_NAME=
 NAMESPACE=
 CLUSTER=
-MASTER_NETWORK=
+AUTH_NETWORK=
 ```
 
 1. Create a private cluster to host the ConfigController Specs
@@ -27,7 +27,7 @@ gcloud beta container --project $PROJECT_ID clusters create $CLUSTER --zone "us-
     --master-ipv4-cidr "172.16.0.0/28" --enable-master-global-access \
     --enable-ip-alias --network "projects/${PROJECT}/global/networks/default" --subnetwork "projects/${PROJECT}/regions/us-central1/subnetworks/default" \
     --no-enable-intra-node-visibility --default-max-pods-per-node "110" --enable-autoscaling --min-nodes "1" --max-nodes "3" \
-    --enable-dataplane-v2 --enable-master-authorized-networks --master-authorized-networks $MASTER_NETWORK \
+    --enable-dataplane-v2 --enable-master-authorized-networks --master-authorized-networks $AUTH_NETWORK \
     --addons HorizontalPodAutoscaling,HttpLoadBalancing,GcePersistentDiskCsiDriver --enable-autoupgrade \
     --enable-autorepair --max-surge-upgrade 1 --max-unavailable-upgrade 0 --workload-pool "${PROJECT_ID}.svc.id.goog" \
     --enable-shielded-nodes --shielded-secure-boot --node-locations "us-central1-c"
