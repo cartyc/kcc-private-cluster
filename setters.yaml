@@ -1,0 +1,21 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: setters
+data:
+  namespace: namespace
+  branch: branch
+  cluster-description-1: description-1
+  cluster-description-2: description-1
+  cluster-name-1: cluster
+  cluster-name-2: cluster-2
+  project-id: project-id
+  region: region
+  repo: repo
+  tags-1: |
+    - zonal
+    - demo
+  tags-2: |
+    - zonal
+    - demo
+  zone: zone
