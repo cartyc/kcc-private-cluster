@@ -1,4 +1,4 @@
-# KCC SetUP
+# KCC SetUp
 
 ## Requirements
 - kpt
@@ -97,9 +97,16 @@ kubectl annotate namespace \
     $NAMESPACE cnrm.cloud.google.com/project-id=${PROJECT_ID}
 ```
 
+6. Pull the `kpt` package
+
+```
+kpt pkg get https://github.com/cartyc/kcc-private-cluster.git
+```
+
 6. Edit the `setters.yaml` file to set the required variables. Following that to apply the variables to the files run the below `kpt` function.
 
 ```
+cd kcc-private-cluster
 kpt fn render .
 ```
 
