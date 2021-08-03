@@ -6,5 +6,5 @@ metadata:
     environment: dev
 spec:
   format: DOCKER
-  location: northamerica-northeast1
+  location: northamerica-northeast1 # kpt-set: ${region}
   description: "Dev Container Registry"
