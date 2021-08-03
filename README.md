@@ -1,9 +1,9 @@
 # KCC SetUp
 
 ## Requirements
-- kpt
-- Docker
-- gcloud
+- [kpt](https://kpt.dev/installation/)
+- [Docker](https://docs.docker.com/desktop/)
+- [gcloud](https://cloud.google.com/sdk/docs/install)
 
 0. Set some helpful vars.
 

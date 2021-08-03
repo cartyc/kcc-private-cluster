@@ -6,5 +6,7 @@ info:
   description: Sample Private GKE cluster configuration using Kubernetes Config Connector.
 pipeline:
   mutators:
-    - image: gcr.io/kpt-fn/apply-setters:unstable
+    - image: gcr.io/kpt-fn/apply-setters:v0.1
       configPath: setters.yaml
+  validators:
+    - image: gcr.io/kpt-fn/gatekeeper:v0.1

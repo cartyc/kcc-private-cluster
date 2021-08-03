@@ -176,7 +176,7 @@ spec:
 apiVersion: compute.cnrm.cloud.google.com/v1beta1
 kind: ComputeRouter
 metadata: # kpt-merge: ${NAMESPACE}/computerouternat-dep-forallsubnets
-  name: router-cluster-1-net # kpt-set: router-${cluster-name-2}-net
+  name: router-cluster-2-net # kpt-set: router-${cluster-name-2}-net
   namespace: namespace # kpt-set: ${namespace}
 spec:
   description: example router description
@@ -187,11 +187,11 @@ spec:
 apiVersion: compute.cnrm.cloud.google.com/v1beta1
 kind: ComputeRouterNAT
 metadata: # kpt-merge: ${NAMESPACE}/computerouternat-sample-forallsubnets
-  name: nat-cluster-1-net # kpt-set: nat-${cluster-name-2}-net
+  name: nat-cluster-2-net # kpt-set: nat-${cluster-name-2}-net
   namespace: namespace # kpt-set: ${namespace}
 spec:
   natIpAllocateOption: AUTO_ONLY
   region: region # kpt-set: ${region}
   routerRef:
-    name: router-cluster-1-net # kpt-set: router-${cluster-name-2}-net
+    name: router-cluster-2-net # kpt-set: router-${cluster-name-2}-net
   sourceSubnetworkIpRangesToNat: ALL_SUBNETWORKS_ALL_IP_RANGES
