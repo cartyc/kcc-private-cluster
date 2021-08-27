@@ -1,0 +1,23 @@
+apiVersion: iam.cnrm.cloud.google.com/v1beta1
+kind: IAMPolicyMember
+metadata:
+  name: iampolicymember-sample-projectlevel
+spec:
+  member: serviceAccount:iampolicymember-dep-projectlevel@project.iam.gserviceaccount.com # kpt-set: serviceAccount:iampolicymember-dep-projectlevel@${project-id}.iam.gserviceaccount.com
+  resourceRef:
+    apiVersion: resourcemanager.cnrm.cloud.google.com/v1beta1
+    kind: Project
+    external: projects/${PROJECT_ID} # kpt-set: projects/${project-id}
+  role: roles/gkehub.gatewayAdmin
+---
+apiVersion: iam.cnrm.cloud.google.com/v1beta1
+kind: IAMPolicyMember
+metadata:
+  name: iampolicymember-sample-projectlevel
+spec:
+  member: serviceAccount:iampolicymember-dep-projectlevel@project.iam.gserviceaccount.com # kpt-set: serviceAccount:iampolicymember-dep-projectlevel@${project-id}.iam.gserviceaccount.com
+  resourceRef:
+    apiVersion: resourcemanager.cnrm.cloud.google.com/v1beta1
+    kind: Project
+    external: projects/project # kpt-set: projects/${project-id}
+  role: roles/gkehub.viewer

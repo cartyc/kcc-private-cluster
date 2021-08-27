@@ -2,7 +2,7 @@ apiVersion: serviceusage.cnrm.cloud.google.com/v1beta1
 kind: Service
 metadata: # kpt-merge: ${NAMESPACE}/gkehubfeature-dep-acmfeature-2
   name: anthos-configmanagement
-  namespace: namespace # kpt-set: ${namespace}
+  namespace: config-control # kpt-set: ${namespace}
   annotations:
     cnrm.cloud.google.com/disable-dependent-services: "false"
     cnrm.cloud.google.com/project-id: project # kpt-set: ${project-id}
@@ -11,53 +11,69 @@ spec:
 ---
 apiVersion: serviceusage.cnrm.cloud.google.com/v1beta1
 kind: Service
-metadata:
-  annotations:
-    cnrm.cloud.google.com/disable-dependent-services: "false"
+metadata: # kpt-merge: /multicluster-ingress
   name: multicluster-ingress
-spec:
-  resourceID: multiclusteringress.googleapis.com
-  projectRef:
-    external: project # kpt-set: ${project-id}
----
-apiVersion: serviceusage.cnrm.cloud.google.com/v1beta1
-kind: Service
-metadata:
+  namespace: config-control # kpt-set: ${namespace}
   annotations:
     cnrm.cloud.google.com/disable-dependent-services: "false"
-  name: gkehub
 spec:
-  resourceID: gkehub.googleapis.com
   projectRef:
     external: project # kpt-set: ${project-id}
+  resourceID: multiclusteringress.googleapis.com
 ---
 apiVersion: serviceusage.cnrm.cloud.google.com/v1beta1
 kind: Service
-metadata:
+metadata: # kpt-merge: /gkehub
+  name: gkehub
+  namespace: config-control # kpt-set: ${namespace}
+  annotations:
+    cnrm.cloud.google.com/disable-dependent-services: "false"
+spec:
+  projectRef:
+    external: project # kpt-set: ${project-id}
+  resourceID: gkehub.googleapis.com
+---
+apiVersion: serviceusage.cnrm.cloud.google.com/v1beta1
+kind: Service
+metadata: # kpt-merge: /container
+  name: container
+  namespace: config-control # kpt-set: ${namespace}
   annotations:
     cnrm.cloud.google.com/deletion-policy: abandon
-  name: container
 spec:
-  resourceID: container.googleapis.com
   projectRef:
     external: project # kpt-set: ${project-id}
+  resourceID: container.googleapis.com
 ---
 apiVersion: serviceusage.cnrm.cloud.google.com/v1beta1
 kind: Service
-metadata:
+metadata: # kpt-merge: /multicluster-service
+  name: multicluster-service
+  namespace: config-control # kpt-set: ${namespace}
   annotations:
     cnrm.cloud.google.com/disable-dependent-services: "false"
-  name: multicluster-service
 spec:
-  resourceID: multiclusterservicediscovery.googleapis.com
   projectRef:
     external: project # kpt-set: ${project-id}
+  resourceID: multiclusterservicediscovery.googleapis.com
 ---
 apiVersion: serviceusage.cnrm.cloud.google.com/v1beta1
 kind: Service
-metadata:
+metadata: # kpt-merge: /binaryauthorization
+  name: binaryauthorization
+  namespace: config-control # kpt-set: ${namespace}
   annotations:
     cnrm.cloud.google.com/project-id: project # kpt-set: ${project-id}
-  name: binaryauthorization
 spec:
   resourceID: binaryauthorization.googleapis.com
+---
+apiVersion: serviceusage.cnrm.cloud.google.com/v1beta1
+kind: Service
+metadata: # kpt-merge: ${NAMESPACE}/gkehubfeature-dep-acmfeature-2
+  name: secret-manager
+  namespace: config-control # kpt-set: ${namespace}
+  annotations:
+    cnrm.cloud.google.com/disable-dependent-services: "false"
+    cnrm.cloud.google.com/project-id: project # kpt-set: ${project-id}
+spec:
+  resourceID: secretmanager.googleapis.com

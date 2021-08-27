@@ -2,11 +2,11 @@ apiVersion: gkehub.cnrm.cloud.google.com/v1beta1
 kind: GKEHubFeature
 metadata: # kpt-merge: ${NAMESPACE}/gkehubfeature-acm
   name: gkehubfeature-acm
-  namespace: namespace # kpt-set: ${namespace}
+  namespace: config-control # kpt-set: ${namespace}
   labels:
     feature: acm
   annotations:
-    cnrm.cloud.google.com/project-id: ${PROJECT_ID} # kpt-set: ${project}
+    cnrm.cloud.google.com/project-id: project # kpt-set: ${project-id}
 spec:
   location: global
   projectRef:
@@ -17,34 +17,17 @@ spec:
 ---
 apiVersion: gkehub.cnrm.cloud.google.com/v1beta1
 kind: GKEHubFeature
-metadata:
-  name: cluster-1-mci # kpt-set: ${cluster-name-1}-mci
-  namespace: namespace # kpt-set: ${namespace}
+metadata: # kpt-merge: namespace/cluster-1-mci
+  name: dev-mci # kpt-set: ${cluster-name-1}-mci
+  namespace: config-control # kpt-set: ${namespace}
 spec:
+  spec:
+    multiclusteringress:
+      configMembershipRef:
+        name: dev-hub # kpt-set: ${cluster-name-1}-hub
+  location: global
   projectRef:
     name: project # kpt-set: ${project-id}
-  location: global
   # The resourceID must be "multiclusteringress" if you want to use multi-cluster
   # ingress feature.
   resourceID: multiclusteringress
-  spec:
-    multiclusteringress:
-      configMembershipRef:
-        name: cluster-1-hub # kpt-set: ${cluster-name-1}-hub
----
-apiVersion: gkehub.cnrm.cloud.google.com/v1beta1
-kind: GKEHubFeature
-metadata:
-  name: cluster-2-mci # kpt-set: ${cluster-name-2}-mci
-  namespace: namespace # kpt-set: ${namespace}
-spec:
-  projectRef:
-    external: project # kpt-set: ${project-id}
-  location: global
-  # The resourceID must be "multiclusteringress" if you want to use multi-cluster
-  # ingress feature.
-  resourceID: multiclusteringress
-  spec:
-    multiclusteringress:
-      configMembershipRef:
-        name: cluster-2-hub # kpt-set: ${cluster-name-2}-hub
